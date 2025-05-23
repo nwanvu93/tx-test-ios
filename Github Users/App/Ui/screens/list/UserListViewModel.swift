@@ -17,12 +17,11 @@ class UserListViewModel : BaseViewModel {
     private var currentPage = 0
     
     func fetchUsers() {
-        isLoading.accept(true)
-        
         let nextSince = currentPage * Constants.API_PAGE_SIZE
         let params = GetUserListUseCase.Params(pageSize: Constants.API_PAGE_SIZE, since: nextSince)
         getUserListUC.execute(input: params)
             .trackError(errorTracker)
+            .trackLoading(isLoadingTracker)
             .subscribe(onNext: { [weak self] users in
                 guard let self = self else { return }
                 self.users.accept(users)

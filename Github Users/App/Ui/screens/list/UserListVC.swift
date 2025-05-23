@@ -38,8 +38,7 @@ class UserListVC: UIViewController {
             .do(onNext: { [weak self] data in
                 self?.emptyView.isHidden = !data.isEmpty
             })
-            .bind(to: tableView.rx.items) { [weak self] tableView, index, item in
-                guard let sSelf = self else { return UITableViewCell() }
+            .bind(to: tableView.rx.items) { tableView, index, item in
                 let indexPath = IndexPath(item: index, section: 0)
                 let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.userViewCell, for: indexPath)!
                 cell.bind(item)

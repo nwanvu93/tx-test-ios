@@ -10,27 +10,48 @@ import RxSwift
 import Alamofire
 import ObjectMapper
 
+
+/// A protocol defining a generic API request structure using Alamofire and RxSwift.
 protocol Requestable: URLRequestConvertible {
+    /// The expected output type after decoding the API response.
     associatedtype Output
     
+    /// The base path for the request.
     var basePath: String { get }
     
+    /// The endpoint path for the request.
     var endpoint: String { get }
     
+    /// The HTTP method used for the request.
     var httpMethod: HTTPMethod { get }
     
+    /// The query parameters to include in the API request.
     var params: Parameters { get }
     
+    /// Additional HTTP headers to include in the request.
     var additionalHeaders: HTTPHeaders { get }
     
+    /// The encoding strategy for the request parameters (e.g., URL or JSON encoding).
     var parameterEncoding: ParameterEncoding { get }
     
+    /// The dispatch queue on which the response is observed.
     var queue: DispatchQueue { get }
     
+    /// Executes the request and returns an observable that emits the decoded output.
     func execute() -> Observable<Output>
     
+    /// Decodes the raw response data into the expected output type.
+    ///
+    /// - Parameter data: The raw response data to decode.
+    /// - Returns: The decoded output of type `Output`.
     func decode(data: Any) -> Output
     
+    /// Executes the network request using Alamofire and calls the completion handler with the response.
+    ///
+    /// - Parameters:
+    ///   - urlRequest: The `URLRequest` to be executed.
+    ///   - complete: A completion handler that receives the `AFDataResponse<Data>`.
+    /// - Returns: The initiated `DataRequest` object.
     func connectWithRequest(urlRequest: URLRequest, complete: @escaping (AFDataResponse<Data>) -> Void) -> DataRequest
 }
 
@@ -119,30 +140,12 @@ extension Requestable {
     }
     
     func connectWithRequest(urlRequest: URLRequest, complete: @escaping (AFDataResponse<Data>) -> Void) -> DataRequest {
-//        let oauthHandler = OAuth2Handler()
-//        let sessionManager = Alamofire.SessionManager.default
-//        if sessionManager.retrier == nil {
-//            sessionManager.retrier = oauthHandler
-//        }
-//        sessionManager.adapter = oauthHandler
-//        let request = sessionManager.request(urlRequest)
-//
-//        debugPrint(request)
-//        request
-//            .validate(statusCode: 200..<300)
-//            .validate(contentType: ["application/json", "text/plain"])
-//            .responseData(completionHandler: { response in
-//                complete(response)
-//            })
-//
-        
         return AF.request(urlRequest)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json", "text/plain"])
             .responseData(completionHandler: { response in
                 complete(response)
             })
-//        return request
     }
 
     fileprivate func buildURLRequest() throws -> URLRequest {

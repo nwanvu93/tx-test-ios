@@ -7,6 +7,7 @@
 
 import ObjectMapper
 
+/// Conforms the `User` model to the `Mappable` protocol from ObjectMapper.
 extension User : Mappable {
     init?(map: Map) {
     }

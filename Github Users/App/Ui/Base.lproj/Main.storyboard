@@ -74,7 +74,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="No data available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wT-SC-Xsf">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="No data available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wT-SC-Xsf">
                                 <rect key="frame" x="131" y="415" width="130" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -232,6 +232,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qAn-yT-duu">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="LRO-OL-ztb">
+                                        <rect key="frame" x="178" y="407.66666666666669" width="37" height="37"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.14846407312925169" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="LRO-OL-ztb" firstAttribute="centerY" secondItem="qAn-yT-duu" secondAttribute="centerY" id="Hwk-Hh-y7k"/>
+                                    <constraint firstItem="LRO-OL-ztb" firstAttribute="centerX" secondItem="qAn-yT-duu" secondAttribute="centerX" id="oFw-mY-c7v"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="FpS-dq-9dQ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -241,9 +254,11 @@
                             <constraint firstItem="FpS-dq-9dQ" firstAttribute="trailing" secondItem="FFB-h7-6JR" secondAttribute="trailing" constant="50" id="7fh-0b-hs2"/>
                             <constraint firstItem="fN6-is-6g8" firstAttribute="top" secondItem="gxG-wk-5ye" secondAttribute="bottom" constant="5" id="9Lm-gx-1ur"/>
                             <constraint firstItem="8wT-SC-Xsf" firstAttribute="centerY" secondItem="FpS-dq-9dQ" secondAttribute="centerY" id="ARI-ve-TLF"/>
+                            <constraint firstItem="qAn-yT-duu" firstAttribute="leading" secondItem="eHK-S1-jhr" secondAttribute="leading" id="AhH-Qm-Ki6"/>
                             <constraint firstItem="FFB-h7-6JR" firstAttribute="leading" secondItem="FpS-dq-9dQ" secondAttribute="leading" constant="50" id="FOM-Ye-DCP"/>
                             <constraint firstItem="FpS-dq-9dQ" firstAttribute="trailing" secondItem="uyW-ng-mCW" secondAttribute="trailing" constant="20" id="Jy1-Mp-NCx"/>
                             <constraint firstItem="gxG-wk-5ye" firstAttribute="top" secondItem="79N-EG-xci" secondAttribute="bottom" constant="20" id="KPr-xl-97E"/>
+                            <constraint firstItem="qAn-yT-duu" firstAttribute="top" secondItem="eHK-S1-jhr" secondAttribute="top" id="Kbm-a6-4Jj"/>
                             <constraint firstItem="fN6-is-6g8" firstAttribute="leading" secondItem="FpS-dq-9dQ" secondAttribute="leading" constant="20" id="RB0-sp-xRC"/>
                             <constraint firstItem="Me2-E0-0Mz" firstAttribute="leading" secondItem="FpS-dq-9dQ" secondAttribute="leading" constant="20" id="RVG-Pc-K32"/>
                             <constraint firstItem="FpS-dq-9dQ" firstAttribute="trailing" secondItem="fN6-is-6g8" secondAttribute="trailing" constant="20" id="Tse-y2-K27"/>
@@ -254,8 +269,10 @@
                             <constraint firstItem="uyW-ng-mCW" firstAttribute="centerY" secondItem="Me2-E0-0Mz" secondAttribute="centerY" id="dZI-6X-EaE"/>
                             <constraint firstItem="FpS-dq-9dQ" firstAttribute="trailing" secondItem="79N-EG-xci" secondAttribute="trailing" constant="20" id="eX6-Gq-gBM"/>
                             <constraint firstItem="uyW-ng-mCW" firstAttribute="leading" secondItem="Me2-E0-0Mz" secondAttribute="trailing" constant="20" id="i1f-rf-2EE"/>
+                            <constraint firstAttribute="bottom" secondItem="qAn-yT-duu" secondAttribute="bottom" id="nVX-f6-rid"/>
                             <constraint firstItem="79N-EG-xci" firstAttribute="leading" secondItem="FpS-dq-9dQ" secondAttribute="leading" constant="20" id="o2g-Rf-QRz"/>
                             <constraint firstItem="gxG-wk-5ye" firstAttribute="leading" secondItem="FpS-dq-9dQ" secondAttribute="leading" constant="20" id="owC-rs-s2O"/>
+                            <constraint firstAttribute="trailing" secondItem="qAn-yT-duu" secondAttribute="trailing" id="pFV-fw-JOo"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Io9-Wi-xee"/>
@@ -267,6 +284,7 @@
                         <outlet property="followingValue" destination="aKN-Co-hDL" id="u8n-VP-a1F"/>
                         <outlet property="lbBio" destination="79N-EG-xci" id="DTG-vc-JP8"/>
                         <outlet property="lbBlog" destination="fN6-is-6g8" id="ciX-KF-jaC"/>
+                        <outlet property="loadingView" destination="qAn-yT-duu" id="XVc-fX-YJT"/>
                         <outlet property="userAvatar" destination="Me2-E0-0Mz" id="pO6-vA-Spl"/>
                         <outlet property="userLocation" destination="gki-KG-OWu" id="q5U-z2-bwl"/>
                         <outlet property="userName" destination="aje-ZH-mop" id="tE3-6x-ZzS"/>

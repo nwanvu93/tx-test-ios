@@ -16,6 +16,7 @@ class UserDetailsViewModel : BaseViewModel {
         let params = GetUserDetailUseCase.Params(username: username)
         getUserDetailUC.execute(input: params)
             .trackError(errorTracker)
+            .trackLoading(isLoadingTracker)
             .subscribe(onNext: { [weak self] result in
                 guard let self = self else { return }
                 self.user.accept(result)

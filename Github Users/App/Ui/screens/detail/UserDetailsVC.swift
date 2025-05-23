@@ -15,6 +15,7 @@ class UserDetailsVC : UIViewController {
     @IBOutlet weak var userLocation: UIButton!
     @IBOutlet weak var userUrl: UILabel!
     @IBOutlet weak var emptyView: UILabel!
+    @IBOutlet weak var loadingView: UIView!
     
     @IBOutlet weak var followerIcon: UIImageView!
     @IBOutlet weak var followerValue: UILabel!
@@ -45,6 +46,12 @@ class UserDetailsVC : UIViewController {
             })
             .disposed(by: disposeBag)
         
+        viewModel.isLoading
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] status in
+                self?.loadingView.isHidden = !status
+            }).disposed(by: disposeBag)
+        
         if let username = username {
             viewModel.getDetails(username)
         } else {
@@ -62,7 +69,7 @@ class UserDetailsVC : UIViewController {
         )
         
         userName.text = data.name
-       
+        
         userLocation.setTitle(data.location, for: .normal)
         userLocation.isHidden = (data.location == nil || data.location!.isEmpty)
         
